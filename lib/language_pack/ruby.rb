@@ -86,10 +86,6 @@ WARNING
     remove_vendor_bundle
     warn_bundler_upgrade
     warn_bad_binstubs
-    puts "------------ ROBIN --------- #{ENV['STACK']} -----------"
-    puts "------------ ROBIN --------- #{ENV['MANDRILL_PASSWORD']} -----------"
-    puts "------------ ROBIN --------- #{ENV['CNB_STACK_ID']} -----------"
-
     install_ruby(slug_vendor_ruby, build_ruby_path)
     setup_language_pack_environment(
       ruby_layer_path: File.expand_path("."),

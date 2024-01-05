@@ -28,7 +28,12 @@ class LanguagePack::Base
   # @param [String] the path of the cache dir this is nil during detect and release
   def initialize(build_path, cache_path = nil, layer_dir=nil)
     @build_path    = build_path
-    @stack         = ENV.fetch("STACK")
+
+    # Note Robin: Our image is based on heroku-20 but for some reasons
+    # the build script in the image always export STACK=heroku-18.
+    # While waiting for the image build script to be updated, we override
+    # the buildpack because ruby 3.3 is not available on heroku-18.
+    @stack         = "heroku-20" # ENV.fetch("STACK")
     @cache         = LanguagePack::Cache.new(cache_path)
     @metadata      = LanguagePack::Metadata.new(@cache)
     @bundler_cache = LanguagePack::BundlerCache.new(@cache, @stack)
